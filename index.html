@@ -17,8 +17,7 @@
 			console.error('Error loading Embedded Messaging: ', err);
 		}
 	};
-	setTimeout(checkAgentAvailability, 2000); // Delay to ensure init is complete
-	
+
 	function checkAgentAvailability() {
 	    embedded_svc.liveAgentAPI.getAvailability('YOUR_BUTTON_ID', function(result) {
 	        if (result.isAvailable) {
@@ -28,9 +27,10 @@
 	        }
 	    });
 	}
-
 	
-// Call this after init
+	setTimeout(checkAgentAvailability, 2000); // Delay to ensure init is complete
+
+	setInterval(checkAgentAvailability, 30000);
 
 
 </script>
