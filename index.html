@@ -31,13 +31,8 @@
         }
 
         @keyframes scrollText {
-            from {
-                transform: translateX(0%);
-            }
-
-            to {
-                transform: translateX(-100%);
-            }
+            from { transform: translateX(0%); }
+            to { transform: translateX(-100%); }
         }
 
         .container {
@@ -79,19 +74,34 @@
     <script type='text/javascript'>
         function initEmbeddedMessaging() {
             try {
-
                 embeddedservice_bootstrap.settings.language = 'en_US';
 
-       
-
                 embeddedservice_bootstrap.init(
-                    '00DPu000009Sz1n',   // Org ID
-                    'Live_Chat',         // Deployment Name
+                    '00DPu000009Sz1n',
+                    'Live_Chat',
                     'https://marley--chatdev1.sandbox.my.site.com/ESWLiveChat1762933923972',
                     {
                         scrt2URL: 'https://marley--chatdev1.sandbox.my.salesforce-scrt.com'
                     }
                 );
+
+                // ---------------- CUSTOM INACTIVITY WARNING FOR TESTING -----------------
+                let idleTimer;
+                function resetTimer() {
+                    clearTimeout(idleTimer);
+                    idleTimer = setTimeout(() => {
+                        console.log("⚠ Test Warning: No activity detected for 20 seconds");
+                        alert("⚠ Test Warning: No activity detected for 20 seconds");
+                    }, 20000); // 20 seconds
+                }
+
+                window.onload = resetTimer;
+                window.onmousemove = resetTimer;
+                window.onkeypress = resetTimer;
+                window.onclick = resetTimer;
+                window.onscroll = resetTimer;
+                // -------------------------------------------------------------------------
+
             } catch (err) {
                 console.error('Error loading Embedded Messaging: ', err);
             }
