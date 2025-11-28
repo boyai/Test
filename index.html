@@ -1,114 +1,27 @@
-<!DOCTYPE html>
-<html>
+<script type='text/javascript'>
+    function initEmbeddedMessaging() {
+        try {
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+            embeddedservice_bootstrap.settings.language = 'en_US';
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
+            // ---------- TEST INACTIVITY TIMEOUT (20 seconds) ----------
+            embeddedservice_bootstrap.settings.enableInactivityTimeout = true;
+            embeddedservice_bootstrap.settings.inactivityTimeout = 20000; // 20 seconds
+            embeddedservice_bootstrap.onInactivityTimeout = function () {
+                console.log('⚠️ User inactive for 20 seconds - trigger warning.');
+            };
+            // ------------------------------------------------------------
+
+            embeddedservice_bootstrap.init(
+                '00DPu000009Sz1n',
+                'Live_Chat',
+                'https://marley--chatdev1.sandbox.my.site.com/ESWLiveChat1762933923972',
+                {
+                    scrt2URL: 'https://marley--chatdev1.sandbox.my.salesforce-scrt.com'
+                }
+            );
+        } catch (err) {
+            console.error('Error loading Embedded Messaging: ', err);
         }
-
-        .scroll-banner {
-            width: 100%;
-            background-color: #4aa3ff;
-            color: white;
-            overflow: hidden;
-            white-space: nowrap;
-            border-bottom: 2px solid #000;
-            font-weight: bold;
-            padding: 10px 0;
-            font-size: 18px;
-        }
-
-        .scroll-banner span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: scrollText 12s linear infinite;
-        }
-
-        @keyframes scrollText {
-            from {
-                transform: translateX(0%);
-            }
-            to {
-                transform: translateX(-100%);
-            }
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 60px auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            text-align: center;
-        }
-
-        h1 {
-            margin-top: 10px;
-            font-size: 28px;
-        }
-
-        .subtitle {
-            font-size: 18px;
-            margin-top: -5px;
-            color: gray;
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="scroll-banner">
-        <span>⚠️ This is a Dummy Website. Testing & Demonstration Environment Only ⚠️</span>
-    </div>
-
-    <div class="container">
-        <h1>Marley Dummy Website</h1>
-        <p class="subtitle">Testing & Demonstration Environment Only</p>
-    </div>
-
-    <script type='text/javascript'>
-        function initEmbeddedMessaging() {
-            try {
-
-                // Language
-                embeddedservice_bootstrap.settings.language = 'en_US';
-
-                // ---------- NEW INACTIVITY TIMEOUT SETTINGS ADDED ----------
-                embeddedservice_bootstrap.settings.enableInactivityTimeout = true;
-                embeddedservice_bootstrap.settings.inactivityTimeout = 40000; // 4 minutes
-
-                embeddedservice_bootstrap.onInactivityTimeout = function () {
-                    console.log('⚠️ User inactive for 4 minutes - trigger warning.');
-                    // You can integrate flow or transcript update here later
-                };
-                // -----------------------------------------------------------
-
-                embeddedservice_bootstrap.init(
-                    '00DPu000009Sz1n',
-                    'Live_Chat',
-                    'https://marley--chatdev1.sandbox.my.site.com/ESWLiveChat1762933923972',
-                    {
-                        scrt2URL: 'https://marley--chatdev1.sandbox.my.salesforce-scrt.com'
-                    }
-                );
-            } catch (err) {
-                console.error('Error loading Embedded Messaging: ', err);
-            }
-        }
-    </script>
-
-    <script type='text/javascript'
-        src='https://marley--chatdev1.sandbox.my.site.com/ESWLiveChat1762933923972/assets/js/bootstrap.min.js'
-        onload='initEmbeddedMessaging()'></script>
-
-</body>
-
-</html>
+    }
+</script>
