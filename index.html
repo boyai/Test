@@ -83,7 +83,7 @@
 
                 // ---------- NEW INACTIVITY TIMEOUT SETTINGS ADDED ----------
                 embeddedservice_bootstrap.settings.enableInactivityTimeout = true;
-                embeddedservice_bootstrap.settings.inactivityTimeout = 240000; // 4 minutes
+                embeddedservice_bootstrap.settings.inactivityTimeout = 40000; // 4 minutes
 
                 embeddedservice_bootstrap.onInactivityTimeout = function () {
                     console.log('⚠️ User inactive for 4 minutes - trigger warning.');
